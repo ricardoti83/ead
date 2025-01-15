@@ -31,6 +31,8 @@ Route::get('/lessons/{id}', [LessonController::class, 'show']);
 
 Route::get('/supports', [SupportController::class, 'index']);
 
+Route::post('/supports{id}', [SupportController::class, 'createReply']);
+
 Route::get('/', function(){
     return response()->json([
         'sucess' => true

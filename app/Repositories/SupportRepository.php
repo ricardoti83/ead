@@ -34,8 +34,25 @@ class SupportRepository
                     ->get();
     }
 
-    private function getUserAuth(): User
+    // Replies
+
+    public function createReplyToSupportId(string $supportId, array $data)
     {
+        $this->getSupport($supportId)
+                ->replies()
+                ->create([
+                    'description' => $data['description'],
+                    'user_id' => $this->getUserAuth()->id
+                ]);
+    }
+
+    private function getSupport(string $id)
+    { //Get the support by id
+        return $this->entity->findOrFail($id);
+    }
+
+    private function getUserAuth(): User
+    {// Get the user logged "Only tests"
         // return auth()->user();
         return User::first();
     }
