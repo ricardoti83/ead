@@ -15,7 +15,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, UuidTrait;
     public $incrementing = false;
-    private $keyType = 'uuid';
+    protected $keyType = 'uuid';
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +46,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function supports()
+    {
+        return $this->hasMany(Support::class);
+    }
 
 
 
