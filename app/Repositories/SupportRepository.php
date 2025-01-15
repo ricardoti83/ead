@@ -34,6 +34,20 @@ class SupportRepository
                     ->get();
     }
 
+    public function createNewSupport(array $data)
+    {
+       $support = $this->getUserAuth()
+                ->supports()
+                ->create([
+                    'lesson_id' => $data['lesson'],
+                    'title' => $data['title'],
+                    'description' => $data['description'],
+                    'status' => $data['status']
+                ]);
+
+        return $support;
+    }
+
     // Replies
 
     public function createReplyToSupportId(string $supportId, array $data)

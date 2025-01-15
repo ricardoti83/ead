@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReplySupport;
+use App\Http\Requests\StoreSupport;
 use App\Http\Resources\ReplyResource;
 use App\Http\Resources\SupportResource;
 use App\Repositories\SupportRepository;
@@ -25,6 +26,14 @@ class SupportController extends Controller
 
         return SupportResource::collection($supports);
     }
+
+    public function store(StoreSupport $request)
+    {
+        $support = $this->repository->createNewSupport($request->validated());
+
+        return new SupportResource($support);
+    }
+
 
 
     public function createReplie(StoreReplySupport $request, $supportId)
