@@ -31,6 +31,7 @@ class SupportRepository
                         }
 
                     })
+                    ->orderBy('updated_at')
                     ->get();
     }
 

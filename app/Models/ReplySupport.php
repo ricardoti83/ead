@@ -15,6 +15,7 @@ class ReplySupport extends Model
     protected $keyType = 'uuid';
     protected $table = 'reply_support';
     protected $fillable = ['description', 'support_id'];
+    protected $touches = ['support'];
 
 
     public function user()
